@@ -147,10 +147,10 @@ namespace FinanceMapTests.FinanceMapCoreTests
         };
 
         [TestCaseSource(nameof(testCases))]
-        public void ProjectsValueAtDate(ProjectAccountValueTestCase tc)
+        public void ForwardProjectsFixedIncomeToAccount(ProjectAccountValueTestCase tc)
         {
             var uut = new AccountValueProjector();
-            var result = uut.ForwardProjectWithFixedIncome(
+            var result = uut.ForwardProjectFixedIncomeToAccountValue(
                 tc.Account,
                 tc.NextPayday,
                 tc.ProjectionDate,

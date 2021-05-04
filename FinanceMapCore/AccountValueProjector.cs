@@ -6,14 +6,14 @@ namespace FinanceMap
     public class AccountValueProjector : IProject
     {
         /// <summary>
-        /// Given a current <see cref="Account"/>, a future date, and an <see cref="Income"/>, project the account's value to the future date.
+        /// Projects future fixed income to the account's value.
         /// </summary>
-        /// <param name="currentAccount">The current account.</param>
-        /// <param name="nextPayday">The next day that income will be received relative to the starting date.</param>
-        /// <param name="projectionDate">The date to which the account will be projected.</param>
-        /// <param name="income">The income to be applied to the account.</param>
-        /// <returns>An account object projected to the future date.</returns>
-        public Account ForwardProjectWithFixedIncome(
+        /// <param name="currentAccount">The current account with today's account value.</param>
+        /// <param name="nextPayday">The next day that income will be received.</param>
+        /// <param name="projectionDate">The future date to which the account will be projected.</param>
+        /// <param name="income">The fixed income to be applied to the account.</param>
+        /// <returns>The current account with future fixed income projections applied.</returns>
+        public Account ForwardProjectFixedIncomeToAccountValue(
             Account currentAccount,
             DateTime nextPayday,
             DateTime projectionDate,
