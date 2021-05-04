@@ -75,10 +75,20 @@ namespace FinanceMapBehaviors.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User requests account value on a future date given current income")]
-        public virtual void UserRequestsAccountValueOnAFutureDateGivenCurrentIncome()
+        [NUnit.Framework.TestCaseAttribute("500", "05/01/2021", "06/01/2021", "500", "2", "1500", null)]
+        [NUnit.Framework.TestCaseAttribute("500", "05/01/2021", "04/01/2021", "500", "2", "-500", null)]
+        [NUnit.Framework.TestCaseAttribute("500", "05/01/2021", "05/22/2021", "500", "2", "1000", null)]
+        [NUnit.Framework.TestCaseAttribute("500", "05/01/2021", "05/19/2021", "500", "2", "1000", null)]
+        public virtual void UserRequestsAccountValueOnAFutureDateGivenCurrentIncome(string currentAccountValue, string startingDate, string projectionDate, string incomeValue, string incomeFrequency, string futureAccountValue, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("CurrentAccountValue", currentAccountValue);
+            argumentsOfScenario.Add("StartingDate", startingDate);
+            argumentsOfScenario.Add("ProjectionDate", projectionDate);
+            argumentsOfScenario.Add("IncomeValue", incomeValue);
+            argumentsOfScenario.Add("IncomeFrequency", incomeFrequency);
+            argumentsOfScenario.Add("FutureAccountValue", futureAccountValue);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User requests account value on a future date given current income", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 2
     this.ScenarioInitialize(scenarioInfo);
@@ -101,138 +111,22 @@ namespace FinanceMapBehaviors.Features
             {
                 this.ScenarioStart();
 #line 3
-        testRunner.Given("an account object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+        testRunner.Given("an account <Account>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 4
-        testRunner.And("500 dollars as the current value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And(string.Format("a starting date {0}", startingDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 5
-        testRunner.And("4 weeks from today as the future date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And(string.Format("a projection date {0}", projectionDate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 6
-        testRunner.And("an income object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.And("an income <Income>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 7
-        testRunner.And("2 weeks as the frequency", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+        testRunner.When("the user requests the account value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
-        testRunner.And("500 dollars as the value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
-        testRunner.When("the user requests the account value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 10
-        testRunner.Then("1500 dollars is the future account value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User requests account value on a past date given current income")]
-        public virtual void UserRequestsAccountValueOnAPastDateGivenCurrentIncome()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User requests account value on a past date given current income", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 12
-    this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 13
-        testRunner.Given("an account object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 14
-        testRunner.And("500 dollars as the current value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
-        testRunner.And("-4 weeks from today as the future date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 16
-        testRunner.And("an income object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
-        testRunner.And("2 weeks as the frequency", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 18
-        testRunner.And("500 dollars as the value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 19
-        testRunner.When("the user requests the account value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 20
-        testRunner.Then("-500 dollars is the future account value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User requests account value three weeks from now given current income")]
-        public virtual void UserRequestsAccountValueThreeWeeksFromNowGivenCurrentIncome()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User requests account value three weeks from now given current income", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 22
-    this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 23
-        testRunner.Given("an account object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 24
-        testRunner.And("500 dollars as the current value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 25
-        testRunner.And("3 weeks from today as the future date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 26
-        testRunner.And("an income object", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 27
-        testRunner.And("2 weeks as the frequency", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 28
-        testRunner.And("500 dollars as the value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 29
-        testRunner.When("the user requests the account value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 30
-        testRunner.Then("1000 dollars is the future account value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("the future account value is <FutureValue>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

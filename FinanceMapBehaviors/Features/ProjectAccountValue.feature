@@ -1,30 +1,15 @@
 Feature: Project account value
-    Scenario: User requests account value on a future date given current income
-        Given an account object
-        And 500 dollars as the current value
-        And 4 weeks from today as the future date
-        And an income object
-        And 2 weeks as the frequency
-        And 500 dollars as the value
+    Scenario Outline: User requests account value on a future date given current income
+        Given an account <Account>
+        And a starting date <StartingDate>
+        And a projection date <ProjectionDate>
+        And an income <Income>
         When the user requests the account value
-        Then 1500 dollars is the future account value
+        Then the future account value is <FutureValue>
         
-    Scenario: User requests account value on a past date given current income
-        Given an account object
-        And 500 dollars as the current value
-        And -4 weeks from today as the future date
-        And an income object
-        And 2 weeks as the frequency
-        And 500 dollars as the value
-        When the user requests the account value
-        Then -500 dollars is the future account value
-        
-    Scenario: User requests account value three weeks from now given current income
-        Given an account object
-        And 500 dollars as the current value
-        And 3 weeks from today as the future date
-        And an income object
-        And 2 weeks as the frequency
-        And 500 dollars as the value
-        When the user requests the account value
-        Then 1000 dollars is the future account value
+    Examples:
+    | CurrentAccountValue | StartingDate | ProjectionDate | IncomeValue | IncomeFrequency | FutureAccountValue |
+    | 500                 | 05/01/2021   | 06/01/2021     | 500         | 2               | 1500               |
+    | 500                 | 05/01/2021   | 04/01/2021     | 500         | 2               | -500               |
+    | 500                 | 05/01/2021   | 05/22/2021     | 500         | 2               | 1000               |
+    | 500                 | 05/01/2021   | 05/19/2021     | 500         | 2               | 1000               |
