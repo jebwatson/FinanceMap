@@ -7,9 +7,9 @@ namespace FinanceMap
     /// </summary>
     public interface IProject
     {
-        Account ProjectValueAtDate(
+        Account ForwardProjectWithFixedIncome(
             Account currentAccount,
-            DateTime startingDate,
+            DateTime nextPayday,
             DateTime projectionDate,
             Income income);
     }
