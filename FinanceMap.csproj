@@ -5,4 +5,16 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="FinanceMapBehaviors\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="FinanceMapBehaviors\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="FinanceMapBehaviors\**" />
+    </ItemGroup>
+
 </Project>
