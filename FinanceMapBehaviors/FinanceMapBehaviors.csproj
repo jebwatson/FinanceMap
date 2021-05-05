@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FinanceMap.csproj" />
+    <ProjectReference Include="..\FinanceMapCore\FinanceMapCore.csproj" />
   </ItemGroup>
 
 </Project>
