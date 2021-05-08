@@ -12,7 +12,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
             public Account Account { get; init; }
             public DateTime NextPayday { get; init; }
             public DateTime ProjectionDate { get; init; }
-            public Income Income { get; init; }
+            public AccountEntry AccountEntry { get; init; }
             public Account ProjectedAccount { get; init; }
         }
 
@@ -24,7 +24,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(14),
                 ProjectionDate = Today + TimeSpan.FromDays(14),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 1000 }
             },
             // Project to next payday
@@ -33,7 +33,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(3),
                 ProjectionDate = Today + TimeSpan.FromDays(3),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 1000 }
             },
             // Project before next payday
@@ -42,7 +42,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(14),
                 ProjectionDate = Today + TimeSpan.FromDays(13),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 500 }
             },
             // Project before next payday
@@ -51,7 +51,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(3),
                 ProjectionDate = Today + TimeSpan.FromDays(2),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 500 }
             },
             // Project to next payday + 1 pay period
@@ -60,7 +60,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(14),
                 ProjectionDate = Today + TimeSpan.FromDays(28),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 1500 }
             },
             // Project to next payday + 1 pay period
@@ -69,7 +69,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(3),
                 ProjectionDate = Today + TimeSpan.FromDays(17),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 1500 }
             },
             // Project to next payday + a few days
@@ -78,7 +78,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(14),
                 ProjectionDate = Today + TimeSpan.FromDays(17),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 1000 }
             },
             // Project to next payday + a few days
@@ -87,7 +87,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(3),
                 ProjectionDate = Today + TimeSpan.FromDays(5),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 1000 }
             },
             // Project to today
@@ -96,7 +96,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(14),
                 ProjectionDate = Today,
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 500 }
             },
             // Project to today
@@ -105,7 +105,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(3),
                 ProjectionDate = Today,
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 500 }
             },
             // Project to past date
@@ -114,7 +114,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(14),
                 ProjectionDate = Today - TimeSpan.FromDays(2),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 500 }
             },
             // Project to past date
@@ -123,7 +123,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today + TimeSpan.FromDays(3),
                 ProjectionDate = Today - TimeSpan.FromDays(2),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 500 }
             },
             // Payday in the past
@@ -132,7 +132,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today - TimeSpan.FromDays(14),
                 ProjectionDate = Today + TimeSpan.FromDays(2),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 500 }
             },
             // Payday in the past
@@ -141,7 +141,7 @@ namespace FinanceMapTests.FinanceMapCoreTests
                 Account = new Account() { Value = 500 },
                 NextPayday = Today - TimeSpan.FromDays(3),
                 ProjectionDate = Today + TimeSpan.FromDays(2),
-                Income = new Income() { Value = 500, Frequency = TimeSpan.FromDays(14) },
+                AccountEntry = new AccountEntry() { Value = 500, Frequency = TimeSpan.FromDays(14) },
                 ProjectedAccount = new Account() { Value = 500 }
             },
         };
@@ -149,12 +149,12 @@ namespace FinanceMapTests.FinanceMapCoreTests
         [TestCaseSource(nameof(testCases))]
         public void ForwardProjectsFixedIncomeToAccount(ProjectAccountValueTestCase tc)
         {
-            var uut = new AccountValueProjector();
-            var result = uut.ForwardProjectFixedIncomeToAccountValue(
+            var uut = new AccountProjectionService();
+            var result = AccountProjectionService.ForwardProjectFixedIncomeToAccountValue(
                 tc.Account,
                 tc.NextPayday,
                 tc.ProjectionDate,
-                tc.Income);
+                tc.AccountEntry);
             
             Assert.AreEqual(tc.ProjectedAccount, result);
         }
