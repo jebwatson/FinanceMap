@@ -55,10 +55,7 @@ namespace FinanceMap
             var incomeDelta = projection.Account.FixedRecurringIncome.Value * payPeriodsElapsed;
             return projection with
             {
-                Account = projection.Account with
-                {
-                    Value = projection.Account.Value + incomeDelta,
-                }
+                ProjectedAccountValue = projection.Account.Value + incomeDelta
             };
         }
         
@@ -84,6 +81,7 @@ namespace FinanceMap
             var projection = new Projection
             {
                 Account = currentAccount,
+                ProjectedAccountValue = currentAccount.Value,
                 NextPayday = nextPayday,
                 Date = projectionDate
             };
@@ -125,10 +123,7 @@ namespace FinanceMap
             var incomeDelta = fixedRecurringIncome.Value * payPeriodsElapsed;
             return projection with
             {
-                Account = projection.Account with
-                {
-                    Value = currentAccount.Value + incomeDelta
-                }
+                ProjectedAccountValue = projection.Account.Value + incomeDelta
             };
         }
     }

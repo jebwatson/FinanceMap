@@ -39,7 +39,7 @@ namespace FinanceMap
 
             var result = string.Concat(
                 $"Projected account value on {projection.Date.ToString(CultureInfo.CurrentCulture)}:",
-                $" {projectedAccount.Account.Value.ToString(CultureInfo.CurrentCulture)}");
+                $" {projectedAccount.ProjectedAccountValue.ToString(CultureInfo.CurrentCulture)}");
 
             Console.WriteLine(result);
         }
@@ -123,7 +123,7 @@ namespace FinanceMap
 
             var result = string.Concat(
                 $"Projected account value on {projectionDate.ToString(CultureInfo.CurrentCulture)}:",
-                $" {projectedAccount.Account.Value.ToString(CultureInfo.CurrentCulture)}");
+                $" {projectedAccount.ProjectedAccountValue.ToString(CultureInfo.CurrentCulture)}");
 
             Console.WriteLine(result);
         }

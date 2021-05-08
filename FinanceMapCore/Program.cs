@@ -6,7 +6,7 @@ namespace FinanceMap
     {
         public static void Main()
         {
-            TemplateService.CreateProjectionJsonTemplate();
+            //TemplateService.CreateProjectionJsonTemplate();
             Console.WriteLine("Hello, welcome to Finance Map!");
             PromptService.ProjectFromFile();
         }

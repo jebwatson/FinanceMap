@@ -21,6 +21,7 @@ namespace FinanceMap
             var projection = new Projection
             {
                 Account = account,
+                ProjectedAccountValue = account.Value,
                 NextPayday = DateTime.Today,
                 Date = DateTime.Today
             };
