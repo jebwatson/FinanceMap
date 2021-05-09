@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FinanceMap
 {
@@ -13,7 +14,7 @@ namespace FinanceMap
         
         public string ToJson()
         {
-            var jProjection = JsonConvert.SerializeObject(this);
+            var jProjection = JsonConvert.SerializeObject(this, Formatting.Indented);
             File.WriteAllText(@"../../../../MyLastProjection.json", jProjection);
             return jProjection;
         }

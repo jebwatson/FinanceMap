@@ -9,9 +9,10 @@ namespace FinanceMap
         
         public AccountEntry FixedRecurringIncome { get; init; }
 
+        // TODO: Can probably make these extension methods for records
         public string ToJson()
         {
-            var jAccount = JsonConvert.SerializeObject(this);
+            var jAccount = JsonConvert.SerializeObject(this, Formatting.Indented);
             File.WriteAllText(@"../../../../MyAccount.json", jAccount);
             return jAccount;
         }

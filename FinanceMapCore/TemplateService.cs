@@ -26,7 +26,7 @@ namespace FinanceMap
                 Date = DateTime.Today
             };
 
-            var jProjection = JsonConvert.SerializeObject(projection);
+            var jProjection = projection.ToJson();
             Console.WriteLine("Your serialized projection:");
             Console.WriteLine(jProjection);
 
@@ -44,7 +44,7 @@ namespace FinanceMap
         
         public static void CreateAccountJsonTemplate()
         {
-            var sAccount = new Account
+            var account = new Account
             {
                 Value = 500,
                 FixedRecurringIncome = new AccountEntry
@@ -53,15 +53,13 @@ namespace FinanceMap
                     Frequency = TimeSpan.FromDays(14)
                 }
             };
-            var jAccount = JsonConvert.SerializeObject(sAccount);
+            var jAccount = account.ToJson();
             Console.WriteLine("Your serialized account:");
             Console.WriteLine(jAccount);
 
-            bool shouldWrite;
-
             Console.WriteLine("Do you want to save this to a file? (Y/N)");
             var answer = Console.ReadLine();
-            shouldWrite = answer == "Y";
+            var shouldWrite = answer == "Y";
 
             if (!shouldWrite) return;
             

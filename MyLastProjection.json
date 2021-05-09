@@ -1,1 +1,12 @@
-{"Account":{"Value":500.0,"FixedRecurringIncome":{"Value":500.0,"Frequency":"14.00:00:00"}},"ProjectedAccountValue":500.0,"NextPayday":"2021-05-07T00:00:00-05:00","Date":"2021-05-07T00:00:00-05:00"}
+{
+  "Account": {
+    "Value": 3969.00,
+    "FixedRecurringIncome": {
+      "Value": 2805.00,
+      "Frequency": "14.00:00:00"
+    }
+  },
+  "ProjectedAccountValue": 500.0,
+  "NextPayday": "2021-05-21T00:00:00-05:00",
+  "Date": "2021-05-07T00:00:00-05:00"
+}

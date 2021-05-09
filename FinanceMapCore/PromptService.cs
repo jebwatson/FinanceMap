@@ -15,8 +15,8 @@ namespace FinanceMap
                 return;
             }
             
-            Console.WriteLine("Your last projection was:");
-            Console.WriteLine(projection);
+            Console.Write("Your last projection was: $");
+            Console.WriteLine(projection.ProjectedAccountValue);
             Console.WriteLine();
 
             try
@@ -36,10 +36,11 @@ namespace FinanceMap
 
             var projectedAccount = AccountProjectionService
                 .ForwardProjectFixedIncomeToAccountValue(projection);
+            projectedAccount.ToJson();
 
             var result = string.Concat(
                 $"Projected account value on {projection.Date.ToString(CultureInfo.CurrentCulture)}:",
-                $" {projectedAccount.ProjectedAccountValue.ToString(CultureInfo.CurrentCulture)}");
+                $" ${projectedAccount.ProjectedAccountValue.ToString(CultureInfo.CurrentCulture)}");
 
             Console.WriteLine(result);
         }
