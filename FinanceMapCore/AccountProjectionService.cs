@@ -4,59 +4,62 @@ namespace FinanceMap
 {
     public class AccountProjectionService
     {
+        public Projection Projection { get; private set; }
+
         /// <summary>
         /// Projects future fixed income to the account's value.
         /// </summary>
         /// <param name="projection">The projection to use.</param>
-        /// <returns>A projection containing the current account with future fixed income projections applied.</returns>
-        public static Projection ForwardProjectFixedIncomeToAccountValue(Projection projection)
+        /// <returns>The service.</returns>
+        public AccountProjectionService ForwardProjectFixedIncomeToAccountValue(Projection projection)
         {
             // Use only date values
-            projection = projection with
+            Projection = projection with
             {
                 NextPayday = projection.NextPayday.Date,
                 Date = projection.Date.Date
             };
             
             var today = DateTime.Today;
-            var daysUntilNextPayday = projection.NextPayday - today;
-            var daysUntilProjection = projection.Date - today;
+            var daysUntilNextPayday = Projection.NextPayday - today;
+            var daysUntilProjection = Projection.Date - today;
 
             // If a past payday was selected, return the current account value
             if (daysUntilNextPayday.Days < 0)
             {
                 // TODO: Log invalid state
-                return projection;
+                return this;
             }
 
             // If a past day was selected for projection, return the current account value.
             if (daysUntilProjection.Days < 0)
             {
                 // TODO: Log invalid state
-                return projection;
+                return this;
             }
 
             // If the next payday is after the projected date, return the current account value.
             if (daysUntilNextPayday.Days > daysUntilProjection.Days)
             {
-                return projection;
+                return this;
             }
 
             // At this point, projection date is greater than or equal to the next payday
             // Calculate the number of pay periods elapsed to determine income accrued
             // This will be days from next payday to projection date divided by the pay period frequency
-            var daysFromNextPaydayToProjection = projection.Date - projection.NextPayday;
-            var payPeriodsElapsed = (int)(daysFromNextPaydayToProjection / projection.Account.FixedRecurringIncome.Frequency);
+            var daysFromNextPaydayToProjection = Projection.Date - Projection.NextPayday;
+            var payPeriodsElapsed = (int)(daysFromNextPaydayToProjection / Projection.Account.FixedRecurringIncome.Frequency);
 
             // Casting to an integer will round down so we need to add one
             // This is because at least one pay period has occurred at this point
             payPeriodsElapsed++;
             
-            var incomeDelta = projection.Account.FixedRecurringIncome.Value * payPeriodsElapsed;
-            return projection with
+            var incomeDelta = Projection.Account.FixedRecurringIncome.Value * payPeriodsElapsed;
+            Projection = Projection with
             {
-                ProjectedAccountValue = projection.Account.Value + incomeDelta
+                ProjectedAccountValue = Projection.Account.Value + incomeDelta
             };
+            return this;
         }
         
         /// <summary>
@@ -68,7 +71,7 @@ namespace FinanceMap
         /// <param name="fixedRecurringIncome">The fixed income to be applied to the account.</param>
         /// <returns>A projection containing the current account with future fixed income projections applied.</returns>
         [Obsolete("Use the ForwardProjectFixedIncomeToAccountValue with Projection parameter")]
-        public static Projection ForwardProjectFixedIncomeToAccountValue(
+        public AccountProjectionService ForwardProjectFixedIncomeToAccountValue(
             Account currentAccount,
             DateTime nextPayday,
             DateTime projectionDate,
@@ -78,7 +81,7 @@ namespace FinanceMap
             nextPayday = nextPayday.Date;
             projectionDate = projectionDate.Date;
             
-            var projection = new Projection
+            Projection = new Projection
             {
                 Account = currentAccount,
                 ProjectedAccountValue = currentAccount.Value,
@@ -94,20 +97,20 @@ namespace FinanceMap
             if (daysUntilNextPayday.Days < 0)
             {
                 // TODO: Log invalid state
-                return projection;
+                return this;
             }
 
             // If a past day was selected for projection, return the current account value.
             if (daysUntilProjection.Days < 0)
             {
                 // TODO: Log invalid state
-                return projection;
+                return this;
             }
 
             // If the next payday is after the projected date, return the current account value.
             if (daysUntilNextPayday.Days > daysUntilProjection.Days)
             {
-                return projection;
+                return this;
             }
 
             // At this point, projection date is greater than or equal to the next payday
@@ -121,10 +124,12 @@ namespace FinanceMap
             payPeriodsElapsed++;
             
             var incomeDelta = fixedRecurringIncome.Value * payPeriodsElapsed;
-            return projection with
+            Projection = Projection with
             {
-                ProjectedAccountValue = projection.Account.Value + incomeDelta
+                ProjectedAccountValue = Projection.Account.Value + incomeDelta
             };
+
+            return this;
         }
     }
 }

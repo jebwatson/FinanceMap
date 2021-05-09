@@ -281,8 +281,9 @@ namespace FinanceMapTests.FinanceMapCoreTests
         [TestCaseSource(nameof(testCases))]
         public void ForwardProjectsFixedIncomeToAccount(ProjectAccountValueTestCase tc)
         {
+            const double delta = 0.0000001;
             var uut = new AccountProjectionService();
-            var result = AccountProjectionService.ForwardProjectFixedIncomeToAccountValue(
+            var result = uut.ForwardProjectFixedIncomeToAccountValue(
                 tc.Projection.Account,
                 tc.Projection.NextPayday,
                 tc.Projection.Date,
@@ -290,8 +291,15 @@ namespace FinanceMapTests.FinanceMapCoreTests
 
             Assert.AreEqual(
                 tc.Projection.ProjectedAccountValue,
-                result.ProjectedAccountValue,
-                0.0000001);
+                result.Projection.ProjectedAccountValue,
+                delta);
+
+            result = uut.ForwardProjectFixedIncomeToAccountValue(tc.Projection);
+            
+            Assert.AreEqual(
+                tc.Projection.ProjectedAccountValue,
+                result.Projection.ProjectedAccountValue,
+                delta);
         }
 
         public record ProjectAccountValueTestCase

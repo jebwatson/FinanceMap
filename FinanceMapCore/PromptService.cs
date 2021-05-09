@@ -34,8 +34,10 @@ namespace FinanceMap
                 Console.WriteLine("Bad date format, using today as the default");
             }
 
-            var projectedAccount = AccountProjectionService
-                .ForwardProjectFixedIncomeToAccountValue(projection);
+            var service = new AccountProjectionService();
+            var projectedAccount = service
+                .ForwardProjectFixedIncomeToAccountValue(projection)
+                .Projection;
             projectedAccount.ToJson();
 
             var result = string.Concat(
@@ -118,9 +120,14 @@ namespace FinanceMap
                 Console.WriteLine("Value too large to process, using default income values");
             }
 
-            var projectedAccount =
-                AccountProjectionService.ForwardProjectFixedIncomeToAccountValue(account, nextPayday, projectionDate,
-                    accountEntry);
+            var service = new AccountProjectionService();
+            var projectedAccount = service
+                .ForwardProjectFixedIncomeToAccountValue(
+                    account,
+                    nextPayday,
+                    projectionDate,
+                    accountEntry)
+                .Projection;
 
             var result = string.Concat(
                 $"Projected account value on {projectionDate.ToString(CultureInfo.CurrentCulture)}:",
