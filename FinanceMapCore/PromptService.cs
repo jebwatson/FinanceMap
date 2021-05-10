@@ -36,7 +36,7 @@ namespace FinanceMap
 
             var service = new AccountProjectionService();
             var projectedAccount = service
-                .ForwardProjectFixedIncomeToAccountValue(projection)
+                .ForwardProjectFixedOccurenceToAccountValue(projection)
                 .Projection;
             projectedAccount.ToJson();
 
@@ -81,12 +81,12 @@ namespace FinanceMap
                 var payday = Console.ReadLine();
 
                 Console.Write("Please enter the date you would like to project to in the format MM/DD/YYYY: ");
-                var projection = Console.ReadLine();
+                var projectionDateEntry = Console.ReadLine();
 
-                if (!string.IsNullOrEmpty(payday) && !string.IsNullOrEmpty(projection))
+                if (!string.IsNullOrEmpty(payday) && !string.IsNullOrEmpty(projectionDateEntry))
                 {
                     nextPayday = DateTime.Parse(payday);
-                    projectionDate = DateTime.Parse(projection);
+                    projectionDate = DateTime.Parse(projectionDateEntry);
                 }
             }
             catch (FormatException)
@@ -121,12 +121,17 @@ namespace FinanceMap
             }
 
             var service = new AccountProjectionService();
+            var projection = new Projection
+            {
+                Account = account with
+                {
+                    FixedRecurringOccurence = accountEntry
+                },
+                NextOccurence = nextPayday,
+                Date = projectionDate
+            };
             var projectedAccount = service
-                .ForwardProjectFixedIncomeToAccountValue(
-                    account,
-                    nextPayday,
-                    projectionDate,
-                    accountEntry)
+                .ForwardProjectFixedOccurenceToAccountValue(projection)
                 .Projection;
 
             var result = string.Concat(

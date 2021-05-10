@@ -9,7 +9,7 @@ namespace FinanceMap
     {
         public Account Account { get; init; }
         public double ProjectedAccountValue { get; init; }
-        public DateTime NextPayday { get; init; }
+        public DateTime NextOccurence { get; init; }
         public DateTime Date { get; init; } = DateTime.Today;
         
         public string ToJson()

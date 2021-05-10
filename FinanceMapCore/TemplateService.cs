@@ -11,7 +11,7 @@ namespace FinanceMap
             var account = new Account
             {
                 Value = 500,
-                FixedRecurringIncome = new AccountEntry
+                FixedRecurringOccurence = new AccountEntry
                 {
                     Value = 500,
                     Frequency = TimeSpan.FromDays(14)
@@ -22,7 +22,7 @@ namespace FinanceMap
             {
                 Account = account,
                 ProjectedAccountValue = account.Value,
-                NextPayday = DateTime.Today,
+                NextOccurence = DateTime.Today,
                 Date = DateTime.Today
             };
 
@@ -47,7 +47,7 @@ namespace FinanceMap
             var account = new Account
             {
                 Value = 500,
-                FixedRecurringIncome = new AccountEntry
+                FixedRecurringOccurence = new AccountEntry
                 {
                     Value = 500,
                     Frequency = TimeSpan.FromDays(14)

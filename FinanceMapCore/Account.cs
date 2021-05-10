@@ -7,7 +7,7 @@ namespace FinanceMap
     {
         public double Value { get; init; } = double.NaN;
         
-        public AccountEntry FixedRecurringIncome { get; init; }
+        public AccountEntry FixedRecurringOccurence { get; init; }
 
         // TODO: Can probably make these extension methods for records
         public string ToJson()
